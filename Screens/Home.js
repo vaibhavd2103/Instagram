@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
+import Post from './Post'
 
 const Home = () => {
     return (
@@ -12,9 +13,7 @@ const Home = () => {
                 style={styles.insta}
                 />
             </View>
-            <Text>
-                This is HomeScreen
-            </Text>
+            <Post />
         </View>
     )
 }
@@ -35,6 +34,7 @@ const styles = StyleSheet.create({
         backgroundColor:"white",
         padding:10,
         borderBottomWidth:1,
-        borderColor:'lightgrey'
+        borderColor:'lightgrey',
+        justifyContent:'center'
     },
 })

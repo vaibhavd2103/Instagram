@@ -14,7 +14,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Chats from '../Screens/Chats'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import Account from '../Screens/Account'
-import Post from '../Screens/Post'
+import NewPost from '../Screens/NewPost'
 
 const Stack = createStackNavigator();
 
@@ -78,7 +78,7 @@ function BottomTabNavigator(){
             ),
             }}
             />
-            <Tab.Screen name = 'Post' component={Post}
+            <Tab.Screen name = 'Post' component={NewPost}
             options={{
             tabBarLabel: 'Post',
             tabBarColor:'red',
