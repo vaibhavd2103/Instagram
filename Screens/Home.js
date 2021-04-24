@@ -1,19 +1,37 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import React, {useState, useEffect} from 'react'
+import { Image, StyleSheet, Text, View, ScrollView } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import Post from './Post'
+import { db } from '../Config'
+
 
 const Home = () => {
+    const [posts, setPosts] = useState([
+        
+    ]);
+
+    useEffect(() => {
+        db.collection('posts').onSnapshot(snapshot => {
+        setPosts(snapshot.docs.map( doc => doc.data()));
+        })
+
+    }, []);
     return (
         <View style = {styles.container}>
-            <StatusBar style = 'dark' />
+            <StatusBar style = 'light' />
             <View style = {styles.header}>
                 <Image 
-                source={ require('../assets/insta.png') }
+                source={{uri:'https://i.pinimg.com/originals/d5/1d/09/d51d097fbbd5cdc277d80c605ad1c455.png'}}
                 style={styles.insta}
                 />
             </View>
-            <Post />
+            <ScrollView>
+            {
+                posts.map(post => (
+                    <Post username={post.username} caption={post.caption} uri={post.uri} />
+                ))
+            }
+            </ScrollView>
         </View>
     )
 }
@@ -24,17 +42,21 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         paddingTop:40,
-        backgroundColor:"#f6f5f5"
+        backgroundColor:"black"
     },
     insta:{
-        width:100,
-        height:30,
+        width:120,
+        height:35,
     },
     header:{
-        backgroundColor:"white",
+        backgroundColor:"black",
         padding:10,
-        borderBottomWidth:1,
-        borderColor:'lightgrey',
-        justifyContent:'center'
+        paddingLeft:10,
+        borderBottomWidth:2,
+        borderColor:'#191919',
+        justifyContent:'center',
+        height:60,
+        width:'100%',
+        alignItems:'center',
     },
 })

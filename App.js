@@ -4,10 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import AppNavigator from './AppNavigator/AppNavigator';
 import * as firebase from 'firebase';
 import firebaseConfig from './Config'
-
-if(!firebase.apps.length){
-firebase.initializeApp(firebaseConfig);
-}
+import Home from './Screens/Home';
 
 export default function App() {
   return <AppNavigator/>

@@ -4,7 +4,9 @@ import { StyleSheet, Text, View } from 'react-native'
 const Chats = (props) => {
     return (
         <View style = {styles.container}>
-            <Text>This is Chat screen</Text>
+            <Text style = {{color:"white",}}>
+                This is Chat screen
+            </Text>
         </View>
     )
 }
@@ -15,7 +17,8 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor:'black',
     }
 
 })

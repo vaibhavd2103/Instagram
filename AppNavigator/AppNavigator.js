@@ -14,7 +14,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Chats from '../Screens/Chats'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import Account from '../Screens/Account'
-import NewPost from '../Screens/NewPost'
+import NewPost from '../Screens/Likes'
+import Likes from '../Screens/Likes'
 
 const Stack = createStackNavigator();
 
@@ -55,14 +56,14 @@ const Tab = createMaterialBottomTabNavigator();
 function BottomTabNavigator(){
     return(
         <Tab.Navigator
-        activeColor="black"
+        activeColor="#E10F27"
         inactiveColor="white"
         barStyle={{ backgroundColor: 'black' }}
         shifting={true}
         >
             <Tab.Screen name = 'Home' component={Home}
             options={{
-            tabBarColor:'dodgerblue',
+            tabBarColor:'black',
             tabBarLabel: 'Home',
             tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
@@ -72,25 +73,25 @@ function BottomTabNavigator(){
             <Tab.Screen name = 'Chats' component={Chats}
             options={{
             tabBarLabel: 'Chats',
-            tabBarColor:'darkgreen',
+            tabBarColor:'black',
             tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="chat" color={color} size={26} />
             ),
             }}
             />
-            <Tab.Screen name = 'Post' component={NewPost}
+            <Tab.Screen name = 'Post' component={Likes}
             options={{
-            tabBarLabel: 'Post',
-            tabBarColor:'red',
+            tabBarLabel: 'Likes',
+            tabBarColor:'black',
             tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="plus-box" color={color} size={26} />
+            <MaterialCommunityIcons name="heart" color={color} size={26} />
             ),
             }}
             />
             <Tab.Screen name = 'Account' component={Account}
             options={{
             tabBarLabel: 'Account',
-            tabBarColor:'orange',
+            tabBarColor:'black',
             tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
             ),

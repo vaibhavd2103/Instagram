@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 const Account = () => {
     return (
         <View style = {styles.container}>
-            <Text>
+            <Text style = {{color:"white"}}>
                 Account Screen
             </Text>
         </View>
@@ -18,5 +18,6 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center',
+        backgroundColor:'black',
     }
 })
