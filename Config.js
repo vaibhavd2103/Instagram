@@ -6,16 +6,14 @@ const firebaseApp = firebase.initializeApp({
   projectId: "instagram1-48b6b",
   storageBucket: "instagram1-48b6b.appspot.com",
   messagingSenderId: "752395833150",
-  appId: "1:752395833150:web:a90a0aec98c666a358266f"
+  appId: "1:752395833150:web:a90a0aec98c666a358266f",
 });
 
 const db = firebaseApp.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
 
-export {db, auth, storage};
-
-
+export { db, auth, storage };
 
 /*
 const firebaseConfig = {
@@ -31,4 +29,3 @@ export default firebaseConfig;
 
 
 */
-
