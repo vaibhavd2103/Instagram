@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
 } from "react-native";
 import * as firebase from "firebase";
 import { ScrollView } from "react-native-gesture-handler";
@@ -37,7 +38,17 @@ const Login = (props) => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <StatusBar style="light" />
-        <ImageBackground source={require("../assets/bg.png")} style={styles.bg}>
+        <ImageBackground
+          source={{
+            uri:
+              "https://www.itl.cat/pngfile/big/9-94126_minimalist-wallpaper-hd-portrait.jpg",
+          }}
+          style={styles.bg}
+        >
+          <Image
+            source={require("../assets/welcomeback.png")}
+            style={styles.welcomeback}
+          />
           <View style={{ alignItems: "center", width: "100%" }}>
             <TextInput
               placeholder="Email"
@@ -99,13 +110,13 @@ const styles = StyleSheet.create({
   inemail: {
     width: "90%",
     marginBottom: 10,
-    marginTop: 100,
     backgroundColor: "white",
     borderWidth: 3,
     borderColor: "black",
     paddingLeft: 10,
     borderRadius: 10,
     height: 40,
+    marginTop: 0,
   },
 
   inpass: {
@@ -116,17 +127,18 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderRadius: 10,
     height: 40,
+    marginBottom: 220,
   },
 
   login: {
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
-    color: "white",
+    color: "#AF1D1E",
   },
 
   button: {
-    marginTop: 200,
+    marginTop: 10,
     backgroundColor: "black",
     height: 50,
     justifyContent: "center",
@@ -140,11 +152,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
+    marginBottom: 80,
   },
 
   accnt: {
     fontSize: 17,
     color: "white",
+  },
+  welcomeback: {
+    height: 100,
+    width: "60%",
+    marginBottom: 130,
   },
 });
 export default Login;

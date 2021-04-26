@@ -14,7 +14,17 @@ export default function Initial(props) {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <ImageBackground source={require("../assets/bg.png")} style={styles.bg}>
+      <ImageBackground
+        source={{ uri: "https://wallpapercave.com/wp/wp6257308.jpg" }}
+        style={styles.bg}
+      >
+        <Image
+          source={{
+            uri:
+              "https://i.pinimg.com/originals/d5/1d/09/d51d097fbbd5cdc277d80c605ad1c455.png",
+          }}
+          style={{ height: 60, width: "50%" }}
+        />
         <View style={styles.buttonContainer}>
           <View style={styles.login}>
             <TouchableOpacity

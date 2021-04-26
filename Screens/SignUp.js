@@ -8,6 +8,7 @@ import {
   Alert,
   TouchableWithoutFeedback,
   ImageBackground,
+  Image,
 } from "react-native";
 import * as firebase from "firebase";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -25,14 +26,82 @@ const SignUp = (props) => {
       if (authUser) {
         console.log(authUser);
         setUser(authUser);
-        if (authUser.displayName) {
-        } else {
-          return authUser.updateProfile({
-            displayName: username,
-          });
+        {
+          props.navigation.navigate("Home");
         }
       } else {
         setUser(null);
+        return (
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+              <ImageBackground
+                source={{
+                  uri:
+                    "https://i.pinimg.com/originals/71/6d/a1/716da13200bb37ccf777d541f7d08002.png",
+                }}
+                style={styles.bg}
+              >
+                <Image
+                  source={require("../assets/welcome1.png")}
+                  style={{
+                    height: 100,
+                    width: "100%",
+                    borderRadius: 44,
+                    marginBottom: 50,
+                  }}
+                />
+                <TextInput
+                  style={styles.inputemail}
+                  placeholder="Email"
+                  value={email}
+                  onChangeText={(text) => setEmail(text)}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Username"
+                  value={username}
+                  onChangeText={(text) => setUsername(text)}
+                />
+                <TextInput
+                  style={styles.inputpass}
+                  placeholder="Password"
+                  value={password}
+                  onChangeText={(text) => setPassword(text)}
+                />
+                <TouchableOpacity
+                  style={styles.register}
+                  onPress={userSignup}
+                  type="submit"
+                >
+                  <Text
+                    style={{ color: "white", fontSize: 25, fontWeight: "bold" }}
+                  >
+                    Sign Up
+                  </Text>
+                </TouchableOpacity>
+                <View style={styles.login}>
+                  <Text style={styles.accnt}>Already have an account?</Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      props.navigation.navigate(Login);
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 24,
+                        marginLeft: 5,
+                        fontWeight: "bold",
+                        color: "#1C7086",
+                      }}
+                    >
+                      Login
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </ImageBackground>
+            </View>
+          </TouchableWithoutFeedback>
+        );
       }
     });
     return () => {
@@ -44,22 +113,40 @@ const SignUp = (props) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((authUser) => {
         Alert.alert("Successfully Registerd !");
         {
           props.navigation.navigate("Home");
         }
+        return authUser.user.updateProfile({
+          displayName: username,
+        });
       })
       .catch((error) => {
         Alert.alert(error.message);
       });
   };
-  return (
+  /*return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <ImageBackground source={require("../assets/bg.png")} style={styles.bg}>
+        <ImageBackground
+          source={{
+            uri:
+              "https://i.pinimg.com/originals/71/6d/a1/716da13200bb37ccf777d541f7d08002.png",
+          }}
+          style={styles.bg}
+        >
+          <Image
+            source={require("../assets/welcome1.png")}
+            style={{
+              height: 100,
+              width: "100%",
+              borderRadius: 44,
+              marginBottom: 50,
+            }}
+          />
           <TextInput
-            style={styles.input}
+            style={styles.inputemail}
             placeholder="Email"
             value={email}
             onChangeText={(text) => setEmail(text)}
@@ -71,19 +158,18 @@ const SignUp = (props) => {
             onChangeText={(text) => setUsername(text)}
           />
           <TextInput
-            style={styles.input}
+            style={styles.inputpass}
             placeholder="Password"
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-          <View style={{ height: 30 }}></View>
           <TouchableOpacity
             style={styles.register}
             onPress={userSignup}
             type="submit"
           >
             <Text style={{ color: "white", fontSize: 25, fontWeight: "bold" }}>
-              Register
+              Sign Up
             </Text>
           </TouchableOpacity>
           <View style={styles.login}>
@@ -95,10 +181,10 @@ const SignUp = (props) => {
             >
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: 24,
                   marginLeft: 5,
                   fontWeight: "bold",
-                  color: "white",
+                  color: "#1C7086",
                 }}
               >
                 Login
@@ -108,6 +194,18 @@ const SignUp = (props) => {
         </ImageBackground>
       </View>
     </TouchableWithoutFeedback>
+  );*/
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "black",
+      }}
+    >
+      <Text style={{ color: "white" }}>Loading......</Text>
+    </View>
   );
 };
 
@@ -116,6 +214,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "black",
+    alignItems: "center",
   },
   bg: {
     flex: 1,
@@ -130,6 +229,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
+    marginBottom: 140,
   },
   accnt: {
     fontSize: 17,
@@ -140,19 +240,39 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "white",
     borderWidth: 3,
-    borderColor: "black",
+    borderColor: "#0F4059",
     paddingLeft: 10,
     borderRadius: 10,
     height: 40,
   },
   register: {
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "#0F4059",
     height: 50,
     justifyContent: "center",
     borderRadius: 20,
     width: 150,
-    marginTop: 150,
+    marginTop: 10,
+  },
+  inputemail: {
+    width: "90%",
+    marginBottom: 10,
+    backgroundColor: "white",
+    borderWidth: 3,
+    borderColor: "#0F4059",
+    paddingLeft: 10,
+    borderRadius: 10,
+    height: 40,
+  },
+  inputpass: {
+    width: "90%",
+    marginBottom: 10,
+    backgroundColor: "white",
+    borderWidth: 3,
+    borderColor: "#0F4059",
+    paddingLeft: 10,
+    borderRadius: 10,
+    height: 40,
   },
 });
 
